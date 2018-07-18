@@ -17,7 +17,9 @@ excel.DisplayAlerts = False
 
 class ObjDataModel(object):
 
-    def __init__(self, data_type, type_index = -1, data_list = {}):
+    def __init__(self, data_type, type_index=-1, data_list=None):
+        if data_list is None:
+            data_list = {}
         self.data_list = data_list
         self.data_type = data_type
         self.type_index = type_index
