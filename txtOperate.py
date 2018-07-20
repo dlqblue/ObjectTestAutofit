@@ -140,6 +140,8 @@ def read_focus_file(path_dic, excel_path):
 
     input_data.input_focus_data(wb, focus_data_list)
 
+    wb.SaveAs(excel_path)
+
 
 def input_excel(obj_data, path):
 
