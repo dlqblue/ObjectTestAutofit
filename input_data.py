@@ -4,6 +4,8 @@
 import win32com.client as win32
 import numpy as np
 import data_model
+import txtOperate
+import re
 
 
 def input_texture_data(wb, obj_data):
@@ -307,3 +309,36 @@ def input_color_shading(wb, obj_data):
         ws.Cells(data_model.color_shading_excel_row[row][x], max_cells_column + 1).HorizontalAlignment = win32.constants.xlCenter
         ws.Cells(data_model.color_shading_excel_row[row][x], max_cells_column + 2).HorizontalAlignment = win32.constants.xlCenter
         ws.Cells(data_model.color_shading_excel_row[row][x], max_cells_column + 3).HorizontalAlignment = win32.constants.xlCenter
+
+
+def input_focus_data(wb, data):
+
+    for x in data:
+
+        for key in x:
+            data_type = re.split(r"[ ]", key)
+            data_index = data_model.focuc_data_type.index(data_type[-1])
+            ws = wb.Worksheets('Focus-' + data_type[0])
+
+            # 写入title之后有效列会变，影响后续数据输入，所以要单独算每一行的有效列
+            cell_range = 'IV' + str(data_model.focus_excel_row[data_index][0])
+            max_cells_column = ws.Range(cell_range).End(win32.constants.xlToLeft).Column
+
+            ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1).Value = data_model.get_device_title('device_title')
+
+            for y in range(30):
+                ws.Cells(data_model.focus_excel_row[data_index][y], max_cells_column + 1).Value = '{:.3f}%'.format(x[key][y])
+
+            ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1).Value = '{:.2f}%'.format(np.std(x[key], ddof = 1) / np.mean(x[key]) * 100)
+            ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1).Interior.Color = rgb_to_int((255, 255, 0))
+            ws.Range(ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1), ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1)).HorizontalAlignment = win32.constants.xlCenter
+            ws.Range(ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1),
+                     ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1)).Borders.LineStyle = 1
+            ws.Columns(max_cells_column + 1).ColumnWidth = 15.5
+
+
+def rgb_to_int(rgb):
+
+    color_int = rgb[0] + (rgb[1] * 256) + (rgb[2] * 256 * 256)
+
+    return color_int

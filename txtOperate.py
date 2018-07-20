@@ -14,6 +14,8 @@ excel = win32.gencache.EnsureDispatch('Excel.Application')
 # 关闭警告对话框
 excel.DisplayAlerts = False
 
+focus_data_list = []    # 对焦的数据集
+
 
 class ObjDataModel(object):
 
@@ -121,6 +123,24 @@ def read_txt(path):
     return obj_data
 
 
+def read_focus_file(path_dic, excel_path):
+
+    # path_example = ./Focus\\Auto 5lux\\TEX_IMG_20180103_055830_jpg_2018_07_04_18h10m32s577_1_M09_V00-report.xls
+    # file_type_list = re.split(r"[\\,_,.]", path_dic)
+
+    for key in path_dic:
+        data_type = re.split(r"[\\]", key)[-1]
+        print(data_type)
+        one_type_data = read_data.read_focus(data_type, path_dic[key])
+        focus_data_list.append(one_type_data)
+
+    print(focus_data_list)
+
+    wb = excel.Workbooks.Open(excel_path)
+
+    input_data.input_focus_data(wb, focus_data_list)
+
+
 def input_excel(obj_data, path):
 
     wb = excel.Workbooks.Open(path)
@@ -160,11 +180,11 @@ if __name__ == '__main__':
 
     txt_path = []
 
+    focus_path_dic = {}
+
     for x in os.listdir(os.getcwd()):
         if os.path.splitext(x)[1] == '.txt' or os.path.splitext(x)[1] == '.csv':
                 txt_path.append(os.path.join(os.getcwd(), x))
-
-    print(os.path.isdir('./Focus'))
 
     # print('\nPlease input the number of files: \n')
     # num = int(input())
@@ -187,6 +207,17 @@ if __name__ == '__main__':
     # device_title = input()
     data_model.set_device_title('device_title', input())
 
+    if os.path.isdir('./Focus'):
+        for root, dirs, files in os.walk('.\\Focus'):
+            focus_path = []
+            if root != '.\\Focus':   # 排除根目录影响
+                for file in files:
+                    focus_path.append(os.path.join(os.path.dirname(os.path.abspath(file)), root[2:], file))
+                focus_path_dic[root] = focus_path
+        read_focus_file(focus_path_dic, excel_path)
+
     for x in range(len(txt_path)):
         data = read_txt(txt_path[x])
         input_excel(data, excel_path)
+
+

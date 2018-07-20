@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import data_model
+import win32com.client as win32
 import txtOperate
 
 data_dic = {}
@@ -512,3 +513,27 @@ def read_shading(read_file):
             n += 1
 
     data_model.set_data_dic('shading', data_list_dic)
+
+
+def read_focus(focus_type, path):
+
+    print(path)
+
+    focus_data_dic = {}
+    data_list = []
+    x = 0
+    while x < len(path):
+
+        print(path[x])
+
+        wb = txtOperate.excel.Workbooks.Open(path[x])
+        ws = wb.Worksheets('sheet1')
+
+        data_list.append(ws.Cells(85, 4).Value)
+        txtOperate.excel.Application.Quit()
+
+        x += 1
+
+    focus_data_dic[focus_type] = data_list
+
+    return focus_data_dic

@@ -12,8 +12,8 @@ data_type_list = [
     'Color D65 10lux', 'Color D50 10lux', 'Color TL84 10lux', 'Color A 10lux',
     'Shading D65 1000lux', 'Shading TL84 1000lux', 'Shading A 1000lux',    # 25-30 DNP
     'Shading D65 20lux', 'Shading TL84 20lux', 'Shading A 20lux',
-    'Auto Focus 700lux', 'Auto Focus 100lux', 'Auto Focus 20lux', 'Auto Focus 10lux',   # 31-38 DxO Dead Leaves
-    'Touch Focus 700lux', 'Touch Focus 100lux', 'Touch Focus 20lux', 'Touch Focus 10lux',
+    'Auto 700lux', 'Auto 100lux', 'Auto 20lux', 'Auto 5lux',   # 31-38 DxO Dead Leaves
+    'Touch 700lux', 'Touch 100lux', 'Touch 20lux', 'Touch 5lux',
 ]
 
 # 西门子星图排列顺序
@@ -133,6 +133,20 @@ shading_data_type = {
     1: 'R/G',
     2: 'B/G'
 }
+
+focus_excel_row = [
+    list(range(41, 71)),    # 700lux
+    list(range(74, 104)),   # 100lux
+    list(range(107, 137)),  # 20lux
+    list(range(140, 170))   # 5lux
+]
+
+focuc_data_type = [
+    '700lux',
+    '100lux',
+    '20lux',
+    '5lux'
+]
 
 
 def init_global_data():    # 初始化
