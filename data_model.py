@@ -134,11 +134,13 @@ shading_data_type = {
     2: 'B/G'
 }
 
+
 def init_global_data():    # 初始化
     global _global_dict
     global _data_dic
     _global_dict = {}
     _data_dic = {}
+
 
 def set_device_title(key, value):
 

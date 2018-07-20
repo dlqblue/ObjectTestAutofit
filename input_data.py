@@ -19,7 +19,6 @@ def input_texture_data(wb, obj_data):
 
     allow_write = {max_cells_column_1, max_column}
 
-
     if len(allow_write) < 2:
 
         for x in np.arange(40, 47, 6):
@@ -165,7 +164,6 @@ def input_color_saturation_data(wb, obj_data):
             ws.Cells(int(x), max_column + 1).Value = data_model.get_device_title('device_title')
             ws.Cells(int(x), max_column + 1).Borders.LineStyle = 1
 
-
     ws.Cells(data_model.color_saturation_excel_row[row], max_cells_column + 1).Value = obj_data.data_list['color'][data_model.color_data_type_dic[2]] + '%'
     ws.Cells(data_model.color_saturation_excel_row[row], max_cells_column + 1).Borders.LineStyle = 1
 
@@ -184,7 +182,6 @@ def input_color_awb_data(wb, obj_data):
     cell_range = 'IV' + str(data_model.color_awb_excel_row[row])
     max_cells_column = ws.Range(cell_range).End(win32.constants.xlToLeft).Column
 
-
     if max_column + 2 == max_cells_column:
 
         for x in np.arange(40, 62, 7):
@@ -194,7 +191,6 @@ def input_color_awb_data(wb, obj_data):
             ws.Cells(int(x) + 1, max_column + 3).Value = 'Block21'
             ws.Cells(int(x) + 1, max_column + 4).Value = 'Block22'
             ws.Cells(int(x) + 1, max_column + 5).Value = 'Block23'
-
 
     for x in range(3):
         ws.Cells(data_model.color_awb_excel_row[row], max_cells_column + 1 + x).Value = obj_data.data_list['color'][str(x + 21) + 'HSV']
@@ -257,7 +253,6 @@ def input_lens_shading(wb, obj_data):
         if max_cells_column == max_cloumn:
             ws.Cells(40, max_cloumn + 1).Value = data_model.get_device_title('device_title')
             ws.Cells(40, max_cloumn + 1).Borders.LineStyle = 1
-
 
         ws.Cells(data_model.lens_shading_excel_row[data_model.allow_lens_shading_type[obj_data.data_type]], max_cells_column + 1).Value = obj_data.data_list['shading'][data_model.shading_data_type[0]] + '%'
         ws.Cells(data_model.lens_shading_excel_row[data_model.allow_lens_shading_type[obj_data.data_type]], max_cells_column + 1).Borders.LineStyle = 1

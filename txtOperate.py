@@ -53,7 +53,6 @@ def read_txt(path):
 
             obj_data.data_list = data_model.get_data_dic()
 
-
     elif type_index == 4:     # T268H
 
         print('This is ' + file_type + '!\n')
@@ -123,7 +122,6 @@ def read_txt(path):
 
 
 def input_excel(obj_data, path):
-
 
     wb = excel.Workbooks.Open(path)
 
