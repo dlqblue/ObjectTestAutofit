@@ -5,8 +5,6 @@ import data_model
 import win32com.client as win32
 import txtOperate
 
-data_dic = {}
-
 
 def read_ringing(read_file):
     # Ringing

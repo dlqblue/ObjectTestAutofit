@@ -4,7 +4,6 @@
 import win32com.client as win32
 import numpy as np
 import data_model
-import txtOperate
 import re
 
 
