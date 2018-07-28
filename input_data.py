@@ -237,6 +237,7 @@ def input_color_delta_e_data(wb, obj_data):
             ws.Cells(data_model.color_delta_e_excel_row[row][x], max_cells_column + 1).Borders.LineStyle = 1
 
         ws.Columns(max_cells_column + 1).HorizontalAlignment = win32.constants.xlCenter
+        ws.Columns(max_cells_column + 1).ColumnWidth = 15.5
 
 
 def input_lens_shading(wb, obj_data):

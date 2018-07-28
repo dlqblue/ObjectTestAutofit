@@ -56,7 +56,7 @@ read_flash_shading_line_number = 242
 read_flash_noise_line_number = read_noise_line_number
 
 # 需要读Imatest Color的行数
-read_color_line_number = [8, 9, 10] + list(range(79, 103)) + [137]
+read_color_line_number = [8, 9, 10] + list(range(85, 109)) + [143]
 
 # 需要读Imatest Shading的行数
 read_shading_line_number = [14, 27, 28]

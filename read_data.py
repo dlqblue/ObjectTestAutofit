@@ -444,8 +444,8 @@ def read_color(read_file):
             # print(data_string)
             if count_line < 3:
 
-                print(data_string[0] + ' ' + data_model.color_data_type_dic[0] + ':' + data_string[-1])
-                data_list_dic[data_string[0] + data_model.color_data_type_dic[0]] = data_string[-1][1:]
+                print(data_string[0] + ' ' + data_model.color_data_type_dic[0] + ':' + data_string[9])
+                data_list_dic[data_string[0] + data_model.color_data_type_dic[0]] = data_string[9][1:]
 
             elif 3 <= count_line < 27:
 

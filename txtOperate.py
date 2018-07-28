@@ -37,7 +37,7 @@ def read_txt(path):
     file_type = [x for x in file_type_list[-8:] if x in data_model.data_type_list][0]
     type_index = data_model.data_type_list.index(file_type)
     print('-------------------------------data here-------------------------------')
-    print('\nFile: ' + path)
+    print('\nFile: ' + path + '\n')
 
     if type_index <= 3:     # TE42
 
@@ -123,7 +123,7 @@ def read_txt(path):
     return obj_data
 
 
-def read_focus_file(path_dic, excel_path):
+def read_focus_file(path_dic, path):
 
     # path_example = ./Focus\\Auto 5lux\\TEX_IMG_20180103_055830_jpg_2018_07_04_18h10m32s577_1_M09_V00-report.xls
     # file_type_list = re.split(r"[\\,_,.]", path_dic)
@@ -136,11 +136,11 @@ def read_focus_file(path_dic, excel_path):
 
     print(focus_data_list)
 
-    wb = excel.Workbooks.Open(excel_path)
+    wb = excel.Workbooks.Open(path)
 
     input_data.input_focus_data(wb, focus_data_list)
 
-    wb.SaveAs(excel_path)
+    wb.SaveAs(path)
 
 
 def input_excel(obj_data, path):
@@ -222,4 +222,5 @@ if __name__ == '__main__':
         data = read_txt(txt_path[x])
         input_excel(data, excel_path)
 
+    os.system('pause')
 
