@@ -134,7 +134,7 @@ def input_flash_data(wb, obj_data):
 
     max_column = ws.Range("IV38").End(win32.constants.xlToLeft).Column
 
-    ws.Cells(38, max_column + 1).Value = data_model.get_device_title('device_title') + '\n' +obj_data.data_type
+    ws.Cells(38, max_column + 1).Value = data_model.get_device_title('device_title') + '_' +obj_data.data_type
 
     ws.Cells(data_model.flash_excel_row[0], max_column + 1).Value = obj_data.data_list['flash_awb']['WB [CIE-C]']
     ws.Cells(data_model.flash_excel_row[1], max_column + 1).Value = obj_data.data_list['flash_shading']['Shading [%]'] + '%'
@@ -299,7 +299,7 @@ def input_color_shading(wb, obj_data):
 
         max_result = float(obj_data.data_list['shading'][data_model.shading_data_type[1] + 'Maximum'])
         min_result = float(obj_data.data_list['shading'][data_model.shading_data_type[1] + 'Minimum'])
-        vignetting = str((max_result - min_result ) / max_result) + '%'
+        vignetting = str(((max_result - min_result ) / max_result) * 100) + '%'
         ws.Cells(data_model.color_shading_excel_row[row][x], max_cells_column + 1).Value = max_result
         ws.Cells(data_model.color_shading_excel_row[row][x], max_cells_column + 2).Value = min_result
         ws.Cells(data_model.color_shading_excel_row[row][x], max_cells_column + 3).Value = vignetting
