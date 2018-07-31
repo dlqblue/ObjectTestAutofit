@@ -560,8 +560,8 @@ def read_focus_ie(focus_type, path):
                     print(read_line)
                     data_string = []
 
-                    for x in read_line.split('\t'):
-                        data_string.append(x)
+                    for i in read_line.split('\t'):
+                        data_string.append(i)
 
                     print(data_string[0] + ': ' + data_string[5])
 
