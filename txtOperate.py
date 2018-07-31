@@ -130,9 +130,13 @@ def read_focus_file(path_dic, path):
 
     for key in path_dic:
         data_type = re.split(r"[\\]", key)[-1]
-        print(data_type)
-        one_type_data = read_data.read_focus(data_type, path_dic[key])
-        focus_data_list.append(one_type_data)
+        one_type_data_dic = {}
+
+        if os.path.splitext(path_dic[key][0])[1] == '.xls':
+            one_type_data_dic = read_data.read_focus_dxo(data_type, path_dic[key])
+        elif os.path.splitext(path_dic[key][0])[1] == '.txt':
+            one_type_data_dic = read_data.read_focus_ie(data_type, path_dic[key])
+        focus_data_list.append(one_type_data_dic)
 
     print(focus_data_list)
 
@@ -193,7 +197,7 @@ if __name__ == '__main__':
     #
     #
     # for x in range(num):
-    #     print('\nPlease inpute text path: \n')
+    #     print('\nPlease input text path: \n')
     #     txt_path.append(input()[1:-1])
     #
     # txt_path = txt_path[1:-1]
@@ -210,12 +214,15 @@ if __name__ == '__main__':
     data_model.set_device_title('device_title', input())
 
     if os.path.isdir('./Focus'):
+
         for root, dirs, files in os.walk('.\\Focus'):
             focus_path = []
             if root != '.\\Focus':   # 排除根目录影响
                 for file in files:
-                    focus_path.append(os.path.join(os.path.dirname(os.path.abspath(file)), root[2:], file))
+                    if os.path.splitext(file)[1] == '.txt' or os.path.splitext(file)[1] == '.xls':
+                        focus_path.append(os.path.join(os.path.dirname(os.path.abspath(file)), root[2:], file))
                 focus_path_dic[root] = focus_path
+        print('Focus data file detected, reading...\n')
         read_focus_file(focus_path_dic, excel_path)
 
     for x in range(len(txt_path)):

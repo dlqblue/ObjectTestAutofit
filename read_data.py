@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import data_model
-import win32com.client as win32
 import txtOperate
 
 
@@ -513,13 +512,14 @@ def read_shading(read_file):
     data_model.set_data_dic('shading', data_list_dic)
 
 
-def read_focus(focus_type, path):
+def read_focus_dxo(focus_type, path):
 
-    print(path)
+    print('This is DxO data!\n')
 
     focus_data_dic = {}
     data_list = []
     x = 0
+
     while x < len(path):
 
         print(path[x])
@@ -535,3 +535,45 @@ def read_focus(focus_type, path):
     focus_data_dic[focus_type] = data_list
 
     return focus_data_dic
+
+
+def read_focus_ie(focus_type, path):
+
+    print('This is IE data!\n')
+
+    focus_data_dic = {}
+    data_list = []
+    x = 0
+
+    while x < len(path):
+
+        with open(path[x], 'r') as readFile:
+
+            read_line = readFile.readline()
+            n = 1 + 1
+
+            while read_line:
+
+                if n == 59:
+
+                    read_line = readFile.readline()
+                    print(read_line)
+                    data_string = []
+
+                    for x in read_line.split('\t'):
+                        data_string.append(x)
+
+                    print(data_string[0] + ': ' + data_string[5])
+
+                    n += 1
+
+                else:
+
+                    read_line = readFile.readline()
+                    n += 1
+        x += 1
+
+    focus_data_dic[focus_type] = data_list
+
+    return focus_data_dic
+
