@@ -42,7 +42,7 @@ def read_txt(path):
     if type_index <= 3:     # TE42
 
         print('This is ' + file_type + ' TE42!\n\n')
-        # 生成对象赋予亮度类型
+        # 生成对象赋予数据类型
         obj_data = ObjDataModel(file_type, type_index)
 
         with open(path, 'r') as readFile:
@@ -125,9 +125,6 @@ def read_txt(path):
 
 def read_focus_file(path_dic, path):
 
-    # path_example = ./Focus\\Auto 5lux\\TEX_IMG_20180103_055830_jpg_2018_07_04_18h10m32s577_1_M09_V00-report.xls
-    # file_type_list = re.split(r"[\\,_,.]", path_dic)
-
     for key in path_dic:
         data_type = re.split(r"[\\]", key)[-1]
         one_type_data_dic = {}
@@ -138,13 +135,12 @@ def read_focus_file(path_dic, path):
             one_type_data_dic = read_data.read_focus_ie(data_type, path_dic[key])
         focus_data_list.append(one_type_data_dic)
 
-    print(focus_data_list)
-
     wb = excel.Workbooks.Open(path)
 
     input_data.input_focus_data(wb, focus_data_list)
 
     wb.SaveAs(path)
+    excel.Application.Quit()
 
 
 def input_excel(obj_data, path):
@@ -229,5 +225,5 @@ if __name__ == '__main__':
         data = read_txt(txt_path[x])
         input_excel(data, excel_path)
 
+    print('\n')
     os.system('pause')
-

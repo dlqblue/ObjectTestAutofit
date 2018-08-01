@@ -514,7 +514,7 @@ def read_shading(read_file):
 
 def read_focus_dxo(focus_type, path):
 
-    print('This is DxO data!\n')
+    print('\nThis is DxO data!\n')
 
     focus_data_dic = {}
     data_list = []
@@ -539,7 +539,7 @@ def read_focus_dxo(focus_type, path):
 
 def read_focus_ie(focus_type, path):
 
-    print('This is IE data!\n')
+    print('\nThis is IE data!\n')
 
     focus_data_dic = {}
     data_list = []
@@ -557,13 +557,13 @@ def read_focus_ie(focus_type, path):
                 if n == 59:
 
                     read_line = readFile.readline()
-                    print(read_line)
                     data_string = []
 
                     for i in read_line.split('\t'):
                         data_string.append(i)
 
                     print(data_string[0] + ': ' + data_string[5])
+                    data_list.append(float(data_string[5]))
 
                     n += 1
 
