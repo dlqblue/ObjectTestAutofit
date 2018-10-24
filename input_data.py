@@ -317,7 +317,7 @@ def input_focus_data(wb, data):
 
         for key in x:
             data_type = re.split(r"[ ]", key)
-            data_index = data_model.focuc_data_type.index(data_type[-1])
+            data_index = data_model.focus_data_type.index(data_type[-1])
             ws = wb.Worksheets('Focus-' + data_type[0])
 
             cell_range = 'IV' + str(data_model.focus_excel_row[data_index][0])
@@ -328,7 +328,7 @@ def input_focus_data(wb, data):
             for y in range(30):
                 ws.Cells(data_model.focus_excel_row[data_index][y], max_cells_column + 1).Value = '{:.3f}'.format(x[key][y])
 
-            ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1).Value = '{:.3f}%'.format(np.std(x[key][:30], ddof = 1) / np.mean(x[key][:30]) * 100)
+            ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1).Value = '{:.3f}%'.format(np.std(x[key][:30], ddof = 1) * 100)
             ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1).Interior.Color = rgb_to_int((255, 255, 0))
             ws.Range(ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1), ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1)).HorizontalAlignment = win32.constants.xlCenter
             ws.Range(ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1),

@@ -86,7 +86,7 @@ noise_excel_row = [
     (43, 49, 55, 61),  # 20lux Avg VN(3), 20lux Avg d_L(3), 20lux Avg d_u(3), 20lux Avg d_v(3)
     (44, 50, 56, 62)  # 10lux Avg VN(3), 10lux Avg d_L(3), 10lux Avg d_u(3), 10lux Avg d_v(3)
 ]
-resolution_excel_row = list(range(64,89))
+resolution_excel_row = list(range(64, 89))
 flash_excel_row = [39, 40, 41, 42]
 flash_data_type_dic = {
     0: 'AWB',
@@ -141,7 +141,7 @@ focus_excel_row = [
     list(range(140, 170))   # 5lux
 ]
 
-focuc_data_type = [
+focus_data_type = [
     '700lux',
     '100lux',
     '20lux',

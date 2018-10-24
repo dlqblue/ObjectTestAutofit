@@ -34,6 +34,7 @@ def read_txt(path):
     file_type_list = re.split(r"[\\,_,.]", path)
 
     # 解析文件名跟字典匹配
+
     file_type = [x for x in file_type_list[-8:] if x in data_model.data_type_list][0]
     type_index = data_model.data_type_list.index(file_type)
     print('-------------------------------data here-------------------------------')
@@ -173,7 +174,7 @@ def input_excel(obj_data, path):
         input_data.input_color_shading(wb, obj_data)
 
     wb.SaveAs(path)
-    # excel.Application.Quit()
+    excel.Application.Quit()
 
 
 if __name__ == '__main__':
