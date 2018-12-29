@@ -33,7 +33,7 @@ def read_txt(path):
 
     # 解析文件名跟字典匹配
 
-    file_type = [x for x in file_type_list[-8:] if x in data_model.data_type_list][0]
+    file_type = [x for x in file_type_list[-10:] if x in data_model.data_type_list][0]
     type_index = data_model.data_type_list.index(file_type)
     print('-------------------------------data here-------------------------------')
     print('\nFile: ' + path + '\n')

@@ -337,7 +337,7 @@ def input_focus_data(wb, data):
             ws.Range(ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1), ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1)).HorizontalAlignment = win32.constants.xlCenter
             ws.Range(ws.Cells(int(data_model.focus_excel_row[data_index][0]) - 1, max_cells_column + 1),
                      ws.Cells(data_model.focus_excel_row[data_index][29] + 1, max_cells_column + 1)).Borders.LineStyle = 1
-            ws.Columns(max_cells_column + 1).ColumnWidth = 15.5
+            ws.Columns(max_cells_column + 1).ColumnWidth = 12
 
 
 def rgb_to_int(rgb):
