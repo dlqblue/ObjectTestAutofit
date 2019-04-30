@@ -563,6 +563,7 @@ def read_focus_ie(focus_type, path):
                         data_string.append(i)
 
                     print(data_string[0] + ': ' + data_string[5])
+                    # print(data_string[5])
                     data_list.append(float(data_string[5]))
 
                     n += 1
